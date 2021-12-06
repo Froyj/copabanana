@@ -34,12 +34,7 @@ app.post("/api/ok", (req, res, next) => {
 
 // Info level logging middleware 
 app.use((req, res, next) => {
-  logger.info(`${req.method} - ${req.originalUrl} - ${res.statusCode || 500}`);
-  if(req.body && Object.keys(req.body).length !== 0) {
-    console.log(`body: ${req.body}`);
-    console.log('params:', req.params);
-    console.log('query:', req.query);
-  }
+  logger.info(`${req.method} - ${req.originalUrl} - ${res.statusCode}`);
   next();
 })
 
