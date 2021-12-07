@@ -10,11 +10,11 @@ const setupRoutes = require('./routes');
 setupRoutes(app);
 
 // error handling middleware
+const handleError =  require('./utils/error-handler')
 app.use((err, req, res, next) => {
-  console.log(err);
-  res.status(500).send('Oops ! it seems that we encountered some difficulties !')
-})
-
+  console.log('error:', req.method, req.path, err.message);
+  handleError(err, res);
+});
 
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`)
