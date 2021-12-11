@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
+const logger = require('./helpers/logger');
+
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
@@ -15,5 +17,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}`)
+  logger.info(`Server listening on port ${PORT}`)
 })
