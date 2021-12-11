@@ -3,7 +3,7 @@ const { combine, timestamp, align, printf, colorize } = format;
 
 const customFormat = printf(({ level, message, timestamp }) => {
   return `${level}: ${[timestamp]} ${message}`;
-})
+});
 
 const consoleTransport = new transports.Console({
   format: combine(
@@ -11,13 +11,11 @@ const consoleTransport = new transports.Console({
     align(),
     timestamp({ format: 'MMM-DD-YYYY HH:mm:ss' }),
     customFormat
-  )
+  ),
 });
 
 const logger = createLogger({
-  transports: [
-    consoleTransport,
-  ]
+  transports: [consoleTransport],
 });
 
 module.exports = logger;
