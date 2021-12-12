@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client-  js"
 }
 
 datasource db {
@@ -10,10 +10,45 @@ datasource db {
   url      = "file:copabanana.db"
 }
 
-
 model User {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   email     String   @unique
   name      String?
+  password  String
+  role      String   @default("user")
+  Rating    Rating[]
+}
+
+model Dish {
+  id          Int        @id @default(autoincrement())
+  name        String
+  description String
+  Proposal    Proposal[]
+  Rating      Rating[]
+  Order       Order[]
+}
+
+model Rating {
+  id     Int  @id @default(autoincrement())
+  rating Int
+  user   User @relation(fields: [userId], references: [id])
+  dish   Dish @relation(fields: [dishId], references: [id])
+  userId Int
+  dishId Int
+}
+
+model Proposal {
+  id            Int      @id @default(autoincrement())
+  delivery_date DateTime
+  dish          Dish     @relation(fields: [dishId], references: [id])
+  dishId        Int
+}
+
+model Order {
+  id     Int    @id @default(autoincrement())
+  status String @default("registered")
+  dish   Dish   @relation(fields: [dishId], references: [id])
+  dishId Int
+  quantity Int
 }
