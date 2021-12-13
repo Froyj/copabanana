@@ -1,7 +1,7 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
-const handleDishCreation = async (req, res, next) => {
+const handleDishCreation = async (req, res) => {
   const result = await prisma.dish.create({
     data: { ...req.body },
   });
@@ -11,7 +11,7 @@ const handleDishCreation = async (req, res, next) => {
   });
 };
 
-const handleDishListRetrieval = async (req, res, next) => {
+const handleDishListRetrieval = async (req, res) => {
   const results = await prisma.dish.findMany();
   res.status(200).json({
     success: true,
@@ -19,7 +19,7 @@ const handleDishListRetrieval = async (req, res, next) => {
   });
 };
 
-const handleDishRetrieval = async (req, res, next) => {
+const handleDishRetrieval = async (req, res) => {
   const id = parseInt(req.params.id);
   const result = await prisma.dish.findUnique({ where: { id } });
   res.status(200).json({
@@ -28,7 +28,7 @@ const handleDishRetrieval = async (req, res, next) => {
   });
 };
 
-const handleDishUpdate = async (req, res, next) => {
+const handleDishUpdate = async (req, res) => {
   const id = parseInt(req.params.id);
   const result = await prisma.dish.update({
     where: { id },
@@ -40,7 +40,7 @@ const handleDishUpdate = async (req, res, next) => {
   });
 };
 
-const handleDishDeletion = async (req, res, next) => {
+const handleDishDeletion = async (req, res) => {
   const id = parseInt(req.params.id);
   await prisma.dish.delete({
     where: { id },

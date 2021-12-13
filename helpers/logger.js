@@ -10,7 +10,7 @@ const consoleTransport = new transports.Console({
     colorize({ all: true }),
     align(),
     timestamp({ format: 'MMM-DD-YYYY HH:mm:ss' }),
-    customFormat
+    customFormat,
   ),
 });
 
