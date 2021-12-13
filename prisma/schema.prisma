@@ -39,16 +39,18 @@ model Rating {
 }
 
 model Proposal {
-  id            Int      @id @default(autoincrement())
-  delivery_date DateTime
-  dish          Dish     @relation(fields: [dishId], references: [id])
-  dishId        Int
+  id                 Int      @id @default(autoincrement())
+  limitDate         DateTime
+  remainingQuantity Int
+  deliveryDate      DateTime
+  dish               Dish     @relation(fields: [dishId], references: [id])
+  dishId             Int
 }
 
 model Order {
-  id     Int    @id @default(autoincrement())
-  status String @default("registered")
-  dish   Dish   @relation(fields: [dishId], references: [id])
-  dishId Int
+  id       Int    @id @default(autoincrement())
+  status   String @default("registered")
+  dish     Dish   @relation(fields: [dishId], references: [id])
+  dishId   Int
   quantity Int
 }
