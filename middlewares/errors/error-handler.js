@@ -16,7 +16,7 @@ const errorHandler = (err, req, res) => {
       errors: validationErrors,
     });
   } else {
-    logger.error(err);
+    logger.error(err.message);
     res.status(500).send('Oops, something broke!');
   }
 };
