@@ -1,7 +1,7 @@
-
+const dishesRouter = require('./dishes');
 
 const setupRoutes = (app) => {
-  // app.use('', )
-}
+  app.use('/dishes', dishesRouter);
+};
 
 module.exports = setupRoutes;
