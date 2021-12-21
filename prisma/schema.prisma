@@ -18,6 +18,7 @@ model User {
   password  String
   role      String   @default("user")
   Rating    Rating[]
+  Order     Order[]
 }
 
 model Dish {
@@ -39,12 +40,12 @@ model Rating {
 }
 
 model Proposal {
-  id                 Int      @id @default(autoincrement())
+  id                Int      @id @default(autoincrement())
   limitDate         DateTime
   remainingQuantity Int
   deliveryDate      DateTime
-  dish               Dish     @relation(fields: [dishId], references: [id])
-  dishId             Int
+  dish              Dish     @relation(fields: [dishId], references: [id])
+  dishId            Int
 }
 
 model Order {
@@ -52,5 +53,7 @@ model Order {
   status   String @default("registered")
   dish     Dish   @relation(fields: [dishId], references: [id])
   dishId   Int
-  quantity Int
+  quantity Int    @default(1)
+  user     User   @relation(fields: [userId], references: [id])
+  userId   Int
 }
