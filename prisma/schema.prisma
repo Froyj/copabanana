@@ -23,7 +23,8 @@ model User {
 model Dish {
   id          Int        @id @default(autoincrement())
   name        String
-  description String
+  description String?
+  imageUrl    String?
   Proposal    Proposal[]
   Rating      Rating[]
   Order       Order[]
@@ -33,24 +34,24 @@ model Rating {
   id     Int  @id @default(autoincrement())
   rating Int
   user   User @relation(fields: [userId], references: [id])
-  dish   Dish @relation(fields: [dishId], references: [id])
+  dish   Dish @relation(fields: [dishId], references: [id], onDelete: NoAction)
   userId Int
   dishId Int
 }
 
 model Proposal {
-  id                 Int      @id @default(autoincrement())
+  id                Int      @id @default(autoincrement())
   limitDate         DateTime
   remainingQuantity Int
   deliveryDate      DateTime
-  dish               Dish     @relation(fields: [dishId], references: [id])
-  dishId             Int
+  dish              Dish     @relation(fields: [dishId], references: [id], onDelete: NoAction)
+  dishId            Int
 }
 
 model Order {
   id       Int    @id @default(autoincrement())
   status   String @default("registered")
-  dish     Dish   @relation(fields: [dishId], references: [id])
+  dish     Dish   @relation(fields: [dishId], references: [id], onDelete: NoAction)
   dishId   Int
   quantity Int
 }
