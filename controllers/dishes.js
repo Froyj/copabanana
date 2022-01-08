@@ -10,7 +10,7 @@ const handleDishCreation = async (req, res) => {
     success: true,
     payload: result,
   });
-  logger.info(`${req.method}: ${req.originalUrl}`);
+  logger.info(`${req.method}: ${req.originalUrl} ${res.statusCode}`);
 };
 
 const handleDishListRetrieval = async (req, res) => {
