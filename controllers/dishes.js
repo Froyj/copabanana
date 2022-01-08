@@ -1,4 +1,5 @@
 const { PrismaClient } = require('@prisma/client');
+const logger = require('../helpers/logger');
 const prisma = new PrismaClient();
 
 const handleDishCreation = async (req, res) => {
@@ -9,6 +10,7 @@ const handleDishCreation = async (req, res) => {
     success: true,
     payload: result,
   });
+  logger.info(`${req.method}: ${req.originalUrl}`);
 };
 
 const handleDishListRetrieval = async (req, res) => {

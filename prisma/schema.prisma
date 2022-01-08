@@ -24,7 +24,7 @@ model Dish {
   id          Int        @id @default(autoincrement())
   name        String
   description String?
-  imageUrl    String?
+  imageUrl    String?    @default("")
   Proposal    Proposal[]
   Rating      Rating[]
   Order       Order[]
@@ -44,7 +44,7 @@ model Proposal {
   limitDate         DateTime
   remainingQuantity Int
   deliveryDate      DateTime
-  dish              Dish     @relation(fields: [dishId], references: [id], onDelete: NoAction)
+  dish              Dish     @relation(fields: [dishId], references: [id], onDelete: Cascade)
   dishId            Int
 }
 
