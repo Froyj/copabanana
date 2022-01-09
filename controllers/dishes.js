@@ -28,6 +28,7 @@ const handleDishRetrieval = async (req, res) => {
     success: true,
     payload: result,
   });
+  logger.info(`${req.method}: ${req.originalUrl} ${res.statusCode}`);
 };
 
 const handleDishUpdate = async (req, res) => {
@@ -40,6 +41,7 @@ const handleDishUpdate = async (req, res) => {
     success: true,
     payload: result,
   });
+  logger.info(`${req.method}: ${req.originalUrl} ${res.statusCode}`);
 };
 
 const handleDishDeletion = async (req, res) => {
@@ -48,6 +50,7 @@ const handleDishDeletion = async (req, res) => {
     where: { id },
   });
   res.sendStatus(204);
+  logger.info(`${req.method}: ${req.originalUrl} ${res.statusCode}`);
 };
 
 module.exports = {

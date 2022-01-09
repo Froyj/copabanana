@@ -3,13 +3,13 @@ const Joi = require('joi');
 const dishCreationSchema = Joi.object({
   name: Joi.string().max(255).required(),
   description: Joi.string(),
-  imageUrl: Joi.string(),
+  imageUrl: Joi.string().allow(''),
 });
 
 const dishUpdateSchema = Joi.object({
   name: Joi.string().max(255),
   description: Joi.string(),
-  imageUrl: Joi.string(),
+  imageUrl: Joi.string().allow(''),
 });
 
 const dishCreationValidation = (req, res, next) => {
